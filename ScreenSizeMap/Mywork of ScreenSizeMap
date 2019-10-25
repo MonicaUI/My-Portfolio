@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title> System Size Map </title>
+    <style>
+        Html {
+            background-color: rgb(247, 245, 245);
+        }
+        
+        p a {
+            text-decoration: none;
+            color: grey;
+        }
+        
+        .title_name {
+            font-family: cursive;
+            color: black;
+            font-size: 20px;
+            margin: 10px;
+        }
+        
+        h1 {
+            margin-left: 218px;
+            margin-block-start: 1px;
+            margin-block-end: 1px;
+        }
+        
+        h1 a {
+            font-size: 15px;
+            text-decoration: none;
+            color: black;
+            background-color: rgb(230, 224, 224);
+            width: 20px;
+            padding: 5px 6px;
+        }
+        
+        .dot_border {
+            border-radius: 200px 200px;
+            background-color: rgb(235, 231, 231);
+            height: 20px;
+            width: 30px;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            margin-left: -5px;
+        }
+        
+        .dot {
+            font-size: .1px;
+            border-radius: 20px;
+            float: left;
+        }
+        
+        h1 span {
+            color: gray;
+            font-size: 12px;
+            padding-bottom: o;
+            padding-top: 8px;
+            padding-right: 8px;
+            display: inline-table;
+        }
+        
+        .active {
+            background-color: gray;
+        }
+        
+        li a:hover {
+            background-color: gray;
+        }
+        
+        .rect {
+            position: absolute;
+        }
+        
+        .rect1 {
+            background-color: #f3eabf;
+            width: 800px;
+            height: 500px;
+            border: 1px #f3eabf;
+            margin-left: 225px;
+        }
+        
+        .rect2 {
+            background-color: #ece0a7;
+            width: 580px;
+            height: 360px;
+            border: 1px #ece0a7;
+            margin-left: 110px;
+        }
+        
+        .rect3 {
+            background-color: #ecdc95;
+            width: 480px;
+            height: 350px;
+            border: 1px #ecdc95;
+            margin-left: 50px;
+        }
+        
+        .rect4 {
+            background-color: #e4cf71;
+            width: 450px;
+            height: 300px;
+            border: 1px #e9c26f;
+            margin-left: 15px;
+        }
+        
+        .rect5 {
+            background-color: #e4ca58;
+            width: 420px;
+            height: 270px;
+            border: 1px #e4ca58;
+            margin-left: 15px;
+        }
+        
+        .rect6 {
+            background-color: #e4c666;
+            width: 380px;
+            height: 300px;
+            border: 1px #e4c666;
+            margin-left: 20px;
+        }
+        
+        .rect7 {
+            background-color: #e4b757;
+            width: 360px;
+            height: 240px;
+            border: 1px #e4b757;
+            margin-left: 10px;
+        }
+        
+        .rect8 {
+            background-color: #e7aa4f;
+            width: 320px;
+            height: 250px;
+            border: 1px #e7aa4f;
+            margin-left: 20px;
+        }
+        
+        .rect9 {
+            background-color: #e6a24a;
+            width: 230px;
+            height: 230px;
+            border: 1px #e6a24a;
+            margin-left: 45px;
+        }
+        
+        .rect10 {
+            background-color: #e68f3f;
+            width: 230px;
+            height: 180px;
+            border: 1px #e68f3f;
+        }
+        
+        .rect11 {
+            background-color: #e6823f;
+            width: 220px;
+            height: 150px;
+            border: 1px #e6823f;
+            margin-left: 5px;
+        }
+        
+        .rect12 {
+            background-color: #e2f18e;
+            width: 200px;
+            height: 100px;
+            border: 1px #e2f18e;
+            margin-left: 10px;
+        }
+        
+        .rect13 {
+            background-color: #aaf58c;
+            width: 180px;
+            height: 330px;
+            border: 1px #aaf58c;
+            margin-left: 10px;
+        }
+        
+        .rect14 {
+            background-color: #7df079;
+            width: 160px;
+            height: 430px;
+            border: 1px #7df079;
+            margin-left: 10px;
+        }
+        
+        .rect15 {
+            background-color: #70f07b;
+            width: 150px;
+            height: 480px;
+            border: 1px #70f07b;
+            margin-left: 5px;
+        }
+        
+        .rect16 {
+            background-color: #68ee73;
+            width: 140px;
+            height: 460px;
+            border: 1px #68ee73;
+            margin-left: 5px;
+        }
+        
+        .rect17 {
+            background-color: #55df7e;
+            width: 135px;
+            height: 300px;
+            border: 1px #55df7e;
+            margin-left: 2px;
+        }
+        
+        .rect18 {
+            background-color: #7babf3;
+            width: 130px;
+            height: 250px;
+            border: 1px #7babf3;
+            margin-left: 2px;
+        }
+        
+        .rect19 {
+            background-color: #7b97f3;
+            width: 120px;
+            height: 230px;
+            border: 1px #7b97f3;
+            margin-left: 5px;
+        }
+        
+        .rect20 {
+            background-color: #907ef1;
+            width: 110px;
+            height: 200px;
+            border: 1px #907ef1;
+            margin-left: 5px;
+        }
+        
+        .rect21 {
+            background-color: #9686ee;
+            width: 110px;
+            height: 160px;
+            border: 1px #9686ee;
+        }
+        
+        .rect22 {
+            background-color: #9e7af3;
+            width: 100px;
+            height: 140px;
+            border: 1px #9e7af3;
+            margin-left: 5px;
+        }
+        
+        .rect23 {
+            background-color: #b56ef0;
+            width: 90px;
+            height: 100px;
+            border: 1px #b56ef0;
+            margin-left: 5px;
+        }
+        
+        .rect24 {
+            background-color: #ac58f0;
+            width: 85px;
+            height: 90px;
+            border: 1px #ac58f0;
+            margin-left: 5px;
+        }
+        
+        footer {
+            padding-top: 490px;
+            margin-left: 230px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1><span class="title_name"> Screen Size Map</span>
+            <span style="color: grey; font-size: 12px; margin-left:235px;"> POPULARITY </span>
+            <span style="word-spacing: -2px;display: inline;"> <a href="#All"style="border-radius: 200px 0 0 200px; ">All</a>
+                    <a href="#low" style="border-radius: 0 0 0 10; ">Low</a>
+                    <a href="#medium" style="border-radius: 0 0 0 0; ">Medium</a>
+                    <a href="high" style="border-radius: 0 200px 200px 0;">High</a></span>
+
+
+
+            <span class="dot_border">
+                            <span class="dot" style="background-color: blueviolet; " >&sdot;</span>
+            <span class="dot" style="background-color:blue;">&sdot;</span>
+            <span class="dot" style="background-color: green;">&sdot;</span>
+            <span class="dot" style="background-color: red;">&sdot;</span>
+            <span class="dot" style="background-color: brown;">&sdot;</span>
+            <span class="dot" style="background-color: orange;">&sdot;</span>
+            </span>
+            <i style='font-size:16px; border-radius: 200px; background-color: grey; padding: 4px;' class='fas'>&#xf31e;</i>
+        </h1>
+
+    </div>
+
+    <div class="rect">
+        <div class="rect1">
+            <div class="rect2">
+                <div class="rect3">
+                    <div class="rect4">
+                        <div class="rect5">
+                            <div class="rect6">
+                                <div class="rect7">
+                                    <div class="rect8">
+                                        <div class="rect9">
+                                            <div class="rect10">
+                                                <div class="rect11">
+                                                    <div class="rect12">
+                                                        <div class="rect13">
+                                                            <div class="rect14">
+                                                                <div class="rect15">
+                                                                    <div class="rect16">
+                                                                        <div class="rect17">
+                                                                            <div class="rect18">
+                                                                                <div class="rect19">
+                                                                                    <div class="rect20">
+                                                                                        <div class="rect21">
+                                                                                            <div class="rect22">
+                                                                                                <div class="rect23">
+                                                                                                    <div class="rect24">
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p style="font-size: 14px;"> <span style="color: grey;">An interactive map of screen sizes for responsive and adaptive design </span>
+            <a href="#imprint" style="margin-left: 180px;">Imprint</a></span>&nbsp;|&nbsp;
+            <a href="#privacy">Privacy</a></span>&nbsp;|&nbsp;
+            <a href="#Made_by">Made by</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>
