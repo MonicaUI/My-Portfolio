@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title> System Size Map </title>
+    <style>
+        Html {
+            background-color: rgb(247, 245, 245);
+        }
+        
+        #header-section {
+            position: relative;
+            z-index: 9999999;
+            display: block;
+            width: 100%;
+            min-height: 40px;
+            background-color: transparent;
+            text-align: center;
+        }
+        
+        #footer-section {
+            display: block;
+            overflow: hidden;
+            padding-bottom: 16px;
+            line-height: 1.2em;
+        }
+        
+        #footer-section a {
+            text-decoration: none;
+            color: grey;
+        }
+        
+        main {
+            display: block;
+            width: 77%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .title_name {
+            font-family: cursive;
+            color: black;
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        
+        header {
+            margin-top: 10px;
+            margin-bottom: 7px;
+        }
+        
+        header a {
+            font-size: 15px;
+            text-decoration: none;
+            color: black;
+            background-color: rgb(230, 224, 224);
+            width: 20px;
+            padding: 7px 15px;
+        }
+        
+        .dot_border {
+            line-height: 5px;
+            display: inline-block;
+            border-radius: 200px 200px;
+            background-color: rgb(235, 231, 231);
+            padding-left: 8px;
+            padding-bottom: 4px;
+        }
+        
+        .left {
+            float: left;
+            margin-right: 8px;
+        }
+        
+        .right {
+            display: inline-block;
+            float: right;
+        }
+        
+        .dot {
+            font-size: 0;
+            border-radius: 10px;
+        }
+        
+        .i-align {
+            margin-top: 4px;
+            margin-left: 2px;
+            font-size: 16px;
+            border-radius: 200px;
+            background-color: grey;
+            padding: 4px;
+            height: 17px;
+        }
+        
+        #setting {
+            display: none;
+        }
+        
+        @media screen and (max-width:980px) {
+            #setting {
+                user-select: none;
+                display: inline-block;
+                height: 48px;
+                width: 48px;
+                position: relative;
+                padding-top: 3px;
+                right: -10px;
+                color: #575757;
+                background-color: transparent;
+                border-radius: 400px;
+                margin: 0;
+                text-align: center;
+                cursor: pointer;
+                float: right;
+            }
+            #right {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width:845px) {
+            #footer-right {
+                text-align: center;
+                float: none;
+                display: block;
+            }
+            #footer-left {
+                text-align: center;
+                float: none;
+                display: block;
+            }
+        }
+        
+        @media screen and (max-width:320px) {
+            header .left {
+                text-align: center;
+                float: none;
+                display: block;
+            }
+            header .right {
+                float: none;
+                right: 0;
+            }
+        }
+        
+        span {
+            color: gray;
+            font-size: 12px;
+            padding-bottom: o;
+            padding-top: 8px;
+            padding-right: 8px;
+        }
+        
+        .active {
+            background-color: gray;
+        }
+        
+        header a:hover {
+            background-color: gray;
+        }
+        
+        svg {
+            box-shadow: 0 0 1px 0 rgba(10, 22, 70, .15), 0 2px 6px -1px rgba(10, 22, 70, .2);
+        }
+        
+        #touch-tip {
+            color: white;
+            font-size: 16px;
+            top: 50%;
+            left: 50%;
+        }
+        
+        .touch-tip {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -58%);
+            transform: translate(-50%, -58%);
+            color: #fff;
+            background-color: #141414;
+            background-color: rgba(0, 0, 0, .5);
+            z-index: 99999;
+            padding: 1.5em;
+            border-radius: 1em;
+        }
+        
+        footer {
+            font-size: 16px;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+        <header id="header-section">
+            <div>
+                <div class="left"><span class="title_name"> Screen Size Map</span></div>
+
+
+                <div class="right">
+                    <div id="setting"><i class="fa fa-gear" style="font-size:24px"></i></div>
+                    <div id="right">
+                        <span style="color: grey; font-size: 12px;"> POPULARITY </span>
+                        <span style="word-spacing: -2px;display: inline;">
+                            <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
+                            <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
+                            <a href="#medium" style="border-radius: 0 0 0 0; ">Medium</a>
+                            <a href="#high" style="border-radius: 0 200px 200px 0;">High</a>
+                        </span>
+                        <span class="dot_border">
+                            <span class="dot" style="background-color: blueviolet; ">&sdot;</span>
+                        <span class="dot" style="background-color:blue;">&sdot;</span>
+                        <span class="dot" style="background-color: green;">&sdot;</span><br>
+                        <span class="dot" style="background-color: red;">&sdot;</span>
+                        <span class="dot" style="background-color: brown;">&sdot;</span>
+                        <span class="dot" style="background-color: orange;">&sdot;</span>
+                        </span>
+                        <i class='fas i-align'>&#xf31e;</i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="svg-container">
+            <span id="touch-tip" class="touch-tip">
+                <b>Touch the Map <br> to start </b>
+            </span>
+            <svg viewBox="0 0 1000 550">
+                <g id="XXL">
+                        <rect width="1000" height="550" style="fill: #fff0c7;" data-group="XXL" data-popularity="pop-less-2" />
+                        <rect width="800" height="450" x="100" style="fill:#fce8b1;" data-group="XXL" data-popularity="pop-more-5" />
+                        <rect width="720" height="440" x="140" style="fill:#fdd68e;" data-group="XXL" data-popularity="pop-less-2" />
+                        <rect width="700" height="400" x="150" style="fill:#fdcc8d;" data-group="XXL" data-popularity="pop-2-5" />
+                        <rect width="680" height="390" x="160" style="fill:#fcd25f;" data-group="XXL" data-popularity="pop-2-5" />
+                </g>
+                <g id="XL">
+                        <rect width="660" height="400" x="170" style="fill:#fab753" />
+                        <rect width="640" height="350" x="180" style="fill:#f89b4f;" />
+                        <rect width="615" height="360" x="192.5" style="fill:#fa9542;" />
+                        <rect width="500" height="360" x="252.5" style="fill:#fc9c42;" />
+                </g>
+                <g id="L"> <rect width="500" height="310" x="252.5" style="fill:#fc9139;" />
+                    <rect width="480" height="290" x="262.5" style="fill:#f7873d;" />
+                    <rect width="430" height="270" x="288.5" style="fill:#f59547;" />
+                    <rect width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;" />
+                </g>
+                <g id="Med">
+                        <rect width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;" />
+                        <rect width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;" />
+                        <rect width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;" />
+                        <rect width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;" />
+                </g>
+                <g id="Small"><rect width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;" />
+                    <rect width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;" />
+                    <rect width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;" />
+                    <rect width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;" />
+                </g>
+                <g id="XS">
+                <rect width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;" />
+                <rect width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;" />
+                <rect width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;" />
+                <rect width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;" />
+                <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;" />
+            </g>
+            </svg>
+        </div>
+
+        <section id="footer-section">
+            <span id="footer-left" class="left" style="font-size: 14px; padding-top: 0;"> An interactive map of screen sizes for responsive and adaptive design
+            </span>
+            <footer id="footer-right" class="right"> <a href="#imprint">Imprint</a>&nbsp;|&nbsp;
+                <a href="#privacy">Privacy</a>&nbsp;|&nbsp;
+                <a href="#Made_by">Made by</a>
+            </footer>
+        </section>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $("#touch-tip").hover(function() {
+                $(this).fadeOut();
+            })
+        })
+    </script>
+    <script>
+        function(popLess) {
+            document.getElementById(#)
+        }
+        })
+    </script>
+</body>
+
+</html>
