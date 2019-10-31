@@ -65,12 +65,13 @@
         }
         
         .dot_border {
+            font-size: 12px;
+            cursor: pointer;
             line-height: 5px;
             display: inline-block;
             border-radius: 200px 200px;
             background-color: rgb(235, 231, 231);
-            padding-left: 8px;
-            padding-bottom: 4px;
+            padding: 5px 8px;
         }
         
         .left {
@@ -84,7 +85,9 @@
         }
         
         .dot {
-            font-size: 0;
+            padding-right: 8px;
+            padding-top: 8px;
+            font-size: .1px;
             border-radius: 10px;
         }
         
@@ -93,7 +96,7 @@
             margin-left: 2px;
             font-size: 16px;
             border-radius: 200px;
-            background-color: grey;
+            background-color: black;
             padding: 4px;
             height: 17px;
         }
@@ -149,20 +152,20 @@
             }
         }
         
-        span {
-            color: gray;
-            font-size: 12px;
-            padding-bottom: o;
-            padding-top: 8px;
-            padding-right: 8px;
-        }
-        
         .active {
             background-color: gray;
         }
         
         header a:hover {
             background-color: gray;
+        }
+        
+        #fullscreen {
+            cursor: pointer;
+        }
+        
+        #FS {
+            background-color: rgb(247, 245, 245);
         }
         
         svg {
@@ -201,35 +204,46 @@
 
 </head>
 
-<body>
+<body id='FS'>
 
     <main>
         <header id="header-section">
-            <div>
-                <div class="left"><span class="title_name"> Screen Size Map</span></div>
+
+            <div class="left"><span class="title_name"> Screen Size Map</span></div>
 
 
-                <div class="right">
-                    <div id="setting"><i class="fa fa-gear" style="font-size:24px"></i></div>
-                    <div id="right">
-                        <span style="color: grey; font-size: 12px;"> POPULARITY </span>
-                        <span style="word-spacing: -2px;display: inline;">
-                            <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
-                            <a href="#low"  onclick=popLess() id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
-                            <a href="#medium" style="border-radius: 0 0 0 0; ">Medium</a>
-                            <a href="#high" style="border-radius: 0 200px 200px 0;">High</a>
-                        </span>
+            <div class="right">
+                <div id="setting"><i class="fa fa-gear" style="font-size:24px"></i></div>
+                <div id="right">
+                    <span style="color: grey; font-size: 12px;"> POPULARITY </span>
+                    <span style="word-spacing: -2px;display: inline;">
+                        <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
+                        <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
+                        <a href="#medium" id="pop-2-5" style="border-radius: 0 0 0 0; ">Medium</a>
+                        <a href="#high" id="pop-more-5" style="border-radius: 0 200px 200px 0;">High</a>
+                    </span>
+                    <span id="button-control">
                         <span class="dot_border">
-                            <span class="dot" style="background-color: blueviolet; ">&sdot;</span>
-                        <span class="dot" style="background-color:blue;">&sdot;</span>
-                        <span class="dot" style="background-color: green;">&sdot;</span><br>
-                        <span class="dot" style="background-color: red;">&sdot;</span>
-                        <span class="dot" style="background-color: brown;">&sdot;</span>
-                        <span class="dot" style="background-color: orange;">&sdot;</span>
-                        </span>
-                        <i class='fas i-align'>&#xf31e;</i>
-                    </div>
+                            <div style="padding-top: 4px;">
+                                <span class="dot" style="background-color: blueviolet; ">&sdot;</span>
+                    <span class="dot" style="background-color:blue;">&sdot;</span>
+                    <span class="dot" style="background-color: green;">&sdot;</span><br>
+                    <span class="dot" style="background-color: red; ">&sdot;</span>
+                    <span class="dot" style="background-color: brown;">&sdot;</span>
+                    <span class="dot" style="background-color: orange;">&sdot;</span>
                 </div>
+                </span>
+                <div id="button-control-list">
+
+                </div>
+                </span>
+                <span id="fullscreen">
+                        <span id="fullscreenOpen">
+                            <i class='fas i-align' style="color: white;">&#xf31e;</i>
+                        </span>
+                </span>
+            </div>
+
             </div>
         </header>
         <div class="svg-container">
@@ -238,46 +252,69 @@
             </span>
             <svg viewBox="0 0 1000 550">
                 <g id="XXL">
-                        <rect width="1000" height="550" style="fill: #fff0c7;" data-group="XXL" data-popularity="pop-less-2" />
-                        <rect width="800" height="450" x="100" style="fill:#fce8b1;" data-group="XXL" data-popularity="pop-more-5" />
-                        <rect width="720" height="440" x="140" style="fill:#fdd68e;" data-group="XXL" data-popularity="pop-less-2" />
-                        <rect width="700" height="400" x="150" style="fill:#fdcc8d;" data-group="XXL" data-popularity="pop-2-5" />
-                        <rect width="680" height="390" x="160" style="fill:#fcd25f;" data-group="XXL" data-popularity="pop-2-5" />
+                    <rect width="1000" height="550" style="fill: #fff0c7;" data-group="XXL"
+                        data-popularity="pop-less-2" />
+                    <rect width="800" height="450" x="100" style="fill:#fce8b1;" data-group="XXL"
+                        data-popularity="pop-more-5" />
+                    <rect width="720" height="440" x="140" style="fill:#fdd68e;" data-group="XXL"
+                        data-popularity="pop-less-2" />
+                    <rect width="700" height="400" x="150" style="fill:#fdcc8d;" data-group="XXL"
+                        data-popularity="pop-2-5" />
+                    <rect width="680" height="390" x="160" style="fill:#fcd25f;" data-group="XXL"
+                        data-popularity="pop-2-5" />
                 </g>
                 <g id="XL">
-                        <rect width="660" height="400" x="170" style="fill:#fab753" />
-                        <rect width="640" height="350" x="180" style="fill:#f89b4f;" />
-                        <rect width="615" height="360" x="192.5" style="fill:#fa9542;" />
-                        <rect width="500" height="360" x="252.5" style="fill:#fc9c42;" />
+                    <rect width="660" height="400" x="170" style="fill:#fab753;" data-popularity="pop-less-2" />
+                    <rect width="640" height="350" x="180" style="fill:#f89b4f;" data-popularity="pop-more-5" />
+                    <rect width="615" height="360" x="192.5" style="fill:#fa9542;" data-popularity="pop-less-2" />
+                    <rect width="500" height="360" x="252.5" style="fill:#fc9c42;" data-popularity="pop-2-5" />
                 </g>
-                <g id="L"> <rect width="500" height="310" x="252.5" style="fill:#fc9139;" />
-                    <rect width="480" height="290" x="262.5" style="fill:#f7873d;" />
-                    <rect width="430" height="270" x="288.5" style="fill:#f59547;" />
-                    <rect width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;" />
+                <g id="L">
+                    <rect width="500" height="310" x="252.5" style="fill:#fc9139;" data-popularity="pop-less-2" />
+                    <rect width="480" height="290" x="262.5" style="fill:#f7873d;" data-popularity="pop-more-5" />
+                    <rect width="430" height="270" x="288.5" style="fill:#f59547;" data-popularity="pop-2-5" />
+                    <rect width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;"
+                        data-popularity="pop-less-2" />
                 </g>
                 <g id="Med">
-                        <rect width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;" />
-                        <rect width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;" />
-                        <rect width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;" />
-                        <rect width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;" />
+                    <rect width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;"
+                        data-popularity="pop-less-2" />
+                    <rect width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;"
+                        data-popularity="pop-more-5" />
+                    <rect width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;"
+                        data-popularity="pop-2-5" />
+                    <rect width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;"
+                        data-popularity="pop-less-2" />
                 </g>
-                <g id="Small"><rect width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;" />
-                    <rect width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;" />
-                    <rect width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;" />
-                    <rect width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;" />
+                <g id="Small">
+                    <rect width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;"
+                        data-popularity="pop-less-2" />
+                    <rect width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;"
+                        data-popularity="pop-more-5" />
+                    <rect width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;"
+                        data-popularity="pop-2-5" />
+                    <rect width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;"
+                        data-popularity="pop-more-5" />
                 </g>
                 <g id="XS">
-                <rect width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;" />
-                <rect width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;" />
-                <rect width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;" />
-                <rect width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;" />
-                <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;" />
-            </g>
+                    <rect width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;"
+                        data-popularity="pop-less-2" />
+                    <rect width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;"
+                        data-popularity="pop-more-5" />
+                    <rect width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;"
+                        data-popularity="pop-2-5" />
+                    <rect width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;"
+                        data-popularity="pop-more-5" />
+                    <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;"
+                        data-popularity="pop-2-5" />
+                </g>
             </svg>
         </div>
 
         <section id="footer-section">
-            <span id="footer-left" class="left" style="font-size: 14px; padding-top: 0;"> An interactive map of screen sizes for responsive and adaptive design
+            <span id="footer-left" class="left" style="color:gray;font-size: 14px; padding-top: 0;"> An interactive map
+                of screen
+                sizes for responsive and adaptive design
             </span>
             <footer id="footer-right" class="right"> <a href="#imprint">Imprint</a>&nbsp;|&nbsp;
                 <a href="#privacy">Privacy</a>&nbsp;|&nbsp;
@@ -293,10 +330,45 @@
         })
     </script>
     <script>
-        function popLess() {
-            location.href = "https://www.w3schools.com";
-            document.getElementById("pop-less-2");
+        function popularity(pop) {
+            allPopularity = document.querySelectorAll('[data-popularity]')
+            allPopularity.forEach(function(element) {
+                console.log(element.getAttribute('data-popularity'));
+                if (pop != 'pop-all-caller' && element.getAttribute('data-popularity') != pop) {
+                    element.style.visibility = "hidden";
+                } else {
+                    element.style.visibility = "";
+                }
+            });
+            document.getElementById('pop-less-2').classList.remove('active');
+            document.getElementById('pop-2-5').classList.remove('active');
+            document.getElementById('pop-more-5').classList.remove('active');
+            document.getElementById('pop-all-caller').classList.remove('active');
         }
+        document.getElementById('pop-all-caller').addEventListener('click', function() {
+            popularity('pop-all-caller');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-less-2').addEventListener('click', function() {
+            popularity('pop-less-2');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-2-5').addEventListener('click', function() {
+            popularity('pop-2-5');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-more-5').addEventListener('click', function() {
+            popularity('pop-more-5');
+            this.classList.add('active');
+        });
+    </script>
+    <script>
+        var x = document.getElementById('FS');
+
+        function openfullscreen() {
+            x.requestFullscreen();
+        }
+        document.getElementById('fullscreenOpen').addEventListener('click', openfullscreen);
     </script>
 </body>
 
