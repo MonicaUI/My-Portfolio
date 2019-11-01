@@ -296,7 +296,6 @@
 
             <div class="left"><span class="title_name"> Screen Size Map</span></div>
 
-
             <div class="right">
                 <div id="setting"><i class="fa fa-gear" style="font-size:24px"></i></div>
                 <div id="right">
@@ -305,10 +304,21 @@
                         <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
                         <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
                         <a href="#medium" id="pop-2-5" style="border-radius: 0 0 0 0; ">Medium</a>
-                        <a href="#high" id="pop-more-5" style="border-radius: 0 200px 200px 0;">High</a>
+                        <a href="#high" id="pop-more-5" style="sborder-radius: 0 200px 200px 0;">High</a>
                     </span>
                     <span id="button-control">
-                        <span class="dot_border">
+
+                <div class="right">
+                    <div id="setting"><i class="fa fa-gear" style="font-size:24px"></i></div>
+                    <div id="right">
+                        <span style="color: grey; font-size: 12px;"> POPULARITY </span>
+                    <span style="word-spacing: -2px;display: inline;">
+                            <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
+                            <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
+                            <a href="#medium" id="pop-2-5" style="border-radius: 0 0 0 0; ">Medium</a>
+                            <a href="#high" id="pop-more-5" style="border-radius: 0 200px 200px 0;">High</a>
+                        </span> >>>>>>> af7c8afdbe27e3215b7d701195fe28cd5ee4689a
+                    <span class="dot_border">
                             <div style="padding-top: 4px;">
                                 <span class="dot" style="background-color: blueviolet; ">&sdot;</span>
                     <span class="dot" style="background-color:blue;">&sdot;</span>
@@ -401,6 +411,34 @@
                     <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;"
                         data-popularity="pop-2-5" data-group="XS" />
                 </g>
+                        <rect width="660" height="400" x="170" style="fill:#fab753;" data-popularity="pop-less-2" />
+                        <rect width="640" height="350" x="180" style="fill:#f89b4f;" data-popularity="pop-more-5"/>
+                        <rect width="615" height="360" x="192.5" style="fill:#fa9542;"data-popularity="pop-less-2" />
+                        <rect width="500" height="360" x="252.5" style="fill:#fc9c42;"data-popularity="pop-2-5"  />
+                </g>
+                <g id="L"> <rect width="500" height="310" x="252.5" style="fill:#fc9139;" data-popularity="pop-less-2"/>
+                    <rect width="480" height="290" x="262.5" style="fill:#f7873d;" data-popularity="pop-more-5" />
+                    <rect width="430" height="270" x="288.5" style="fill:#f59547;" data-popularity="pop-2-5" />
+                    <rect width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;" data-popularity="pop-less-2"  />
+                </g>
+                <g id="Med">
+                        <rect width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;"data-popularity="pop-less-2" />
+                        <rect width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;"data-popularity="pop-more-5" />
+                        <rect width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;"data-popularity="pop-2-5" />
+                        <rect width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;" data-popularity="pop-less-2" />
+                </g>
+                <g id="Small"><rect width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;" data-popularity="pop-less-2"/>
+                    <rect width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;" data-popularity="pop-more-5"/>
+                    <rect width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;" data-popularity="pop-2-5"/>
+                    <rect width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;"data-popularity="pop-more-5" />
+                </g>
+                <g id="XS">
+                <rect width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;" data-popularity="pop-less-2"/>
+                <rect width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;"data-popularity="pop-more-5" />
+                <rect width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;" data-popularity="pop-2-5"/>
+                <rect width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;"data-popularity="pop-more-5" />
+                <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;"data-popularity="pop-2-5" />
+            </g>
             </svg>
         </div>
 
@@ -511,6 +549,21 @@
         });
         document.getElementById('extra-small').addEventListener('click', function() {
             buttonControl('XS');
+        });
+        document.getElementById('pop-all-caller').addEventListener('click', function() {
+            popularity('pop-all-caller');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-less-2').addEventListener('click', function() {
+            popularity('pop-less-2');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-2-5').addEventListener('click', function() {
+            popularity('pop-2-5');
+            this.classList.add('active');
+        });
+        document.getElementById('pop-more-5').addEventListener('click', function() {
+            popularity('pop-more-5');
             this.classList.add('active');
         });
     </script>
