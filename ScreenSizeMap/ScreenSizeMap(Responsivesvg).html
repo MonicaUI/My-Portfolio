@@ -428,6 +428,7 @@
             </footer>
         </section>
     </main>
+    <!-- Touch SSM -->
     <script>
         $(document).ready(function() {
             $("#touch-tip").hover(function() {
@@ -435,6 +436,7 @@
             })
         })
     </script>
+    <!-- Popularity -->
     <script>
         function popularity(pop) {
             allPopularity = document.querySelectorAll('[data-popularity]')
@@ -468,14 +470,15 @@
             this.classList.add('active');
         });
     </script>
+    <!-- Fullscreen -->
     <script>
         var x = document.getElementById('FS');
-
         function openfullscreen() {
             x.requestFullscreen();
         }
         document.getElementById('fullscreenOpen').addEventListener('click', openfullscreen);
     </script>
+
     <script>
         function dropDown() {
             document.getElementById('buttonDrop').classList.toggle("show");
@@ -500,7 +503,6 @@
             document.getElementById('medium').classList.remove('active');
             document.getElementById('small').classList.remove('active');
             document.getElementById('extra-small').classList.remove('active');
-
         }
         document.getElementById('extra-extra-large').addEventListener('click', function() {
             buttonControl('XXL');
@@ -525,21 +527,8 @@
         document.getElementById('extra-small').addEventListener('click', function() {
             buttonControl('XS');
         });
-        document.getElementById('pop-all-caller').addEventListener('click', function() {
-            popularity('pop-all-caller');
-            this.classList.add('active');
-        });
-        document.getElementById('pop-less-2').addEventListener('click', function() {
-            popularity('pop-less-2');
-            this.classList.add('active');
-        });
-        document.getElementById('pop-2-5').addEventListener('click', function() {
-            popularity('pop-2-5');
-            this.classList.add('active');
-        });
-        document.getElementById('pop-more-5').addEventListener('click', function() {
-            popularity('pop-more-5');
-            this.classList.add('active');
+        document.getElementById('reset-control').addEventListener('click', function() {
+            buttonControl('button-all');
         });
     </script>
 </body>
