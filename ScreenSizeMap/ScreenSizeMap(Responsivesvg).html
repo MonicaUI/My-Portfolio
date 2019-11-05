@@ -117,7 +117,7 @@
             font-weight: 600;
         }
         
-        .show {
+        #buttonDrop.show {
             margin-top: 10px;
             margin-left: 275px;
             display: block;
@@ -281,6 +281,83 @@
             border-radius: 1em;
         }
         
+        #svg-screensize:hover g:hover rect {
+            fill-opacity: 20;
+        }
+        
+        #svg-screensize:hover g:hover rect:hover {
+            fill-opacity: .3;
+            stroke: #fff;
+            stroke-width: .15em;
+            stroke-dasharray: 0;
+            -webkit-transition: none;
+            transition: none;
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#XXL rect {
+            fill: #f1c40f
+        }
+        
+        #svg-screensize:hover g:hover#XXL rect:hover {
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#XL rect {
+            fill: #e67e22
+        }
+        
+        #svg-screensize:hover g:hover#XL rect:hover {
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#L rect {
+            fill: #e74c3c
+        }
+        
+        #svg-screensize:hover g:hover#L rect:hover {
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#M rect {
+            fill: #2ecc71
+        }
+        
+        #svg-screensize:hover g:hover#M rect:hover {
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#S rect {
+            fill: #2980b9
+        }
+        
+        #svg-screensize:hover g:hover#S rect:hover {
+            fill: #333
+        }
+        
+        #svg-screensize:hover g:hover#XS rect {
+            fill: #8e44ad;
+        }
+        
+        #svg-screensize:hover g:hover#XS rect:hover {
+            fill: #333
+        }
+        
+        .tool-tip {
+            position: absolute;
+            display: inline-block;
+            top: 20%;
+            left: 15%;
+            right: 5%;
+            min-height: 110px;
+            height: auto;
+            width: 250px;
+            background-color: black;
+            color: gray;
+            font-style: italic;
+            font-size: 16px;
+        }
+        
         footer {
             font-size: 16px;
             color: gray;
@@ -299,13 +376,13 @@
                 <div id="right">
                     <span style="color: grey; font-size: 12px;"> POPULARITY </span>
                     <span style="word-spacing: -2px;display: inline;">
-                            <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
-                            <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
-                            <a href="#medium" id="pop-2-5" style="border-radius: 0 0 0 0; ">Medium</a>
-                            <a href="#high" id="pop-more-5" style="border-radius: 0 200px 200px 0;">High</a>
-                        </span>
+                        <a href="#All" id="pop-all-caller" style="border-radius: 200px 0 0 200px; ">All</a>
+                        <a href="#low" id="pop-less-2" style="border-radius: 0 0 0 10; ">Low</a>
+                        <a href="#medium" id="pop-2-5" style="border-radius: 0 0 0 0; ">Medium</a>
+                        <a href="#high" id="pop-more-5" style="border-radius: 0 200px 200px 0;">High</a>
+                    </span>
                     <span id="button-control">
-                    <span class="dot_border">
+                        <span class="dot_border">
                             <div style="padding-top: 4px;">
                                 <span class="dot" style="background-color: blueviolet; ">&sdot;</span>
                     <span class="dot" style="background-color:blue;">&sdot;</span>
@@ -333,9 +410,9 @@
 
                 </span>
                 <span id="fullscreen">
-                <span id="fullscreenOpen">
-                    <i class='fas i-align' style="color: white;">&#xf31e;</i>
-                </span>
+                        <span id="fullscreenOpen">
+                            <i class='fas i-align' style="color: white;">&#xf31e;</i>
+                        </span>
                 </span>
             </div>
             </div>
@@ -344,77 +421,96 @@
             <span id="touch-tip" class="touch-tip">
                 <b>Touch the Map <br> to start </b>
             </span>
-            <svg viewBox="0 0 1000 550">
+            <span>
+                <div id="screenTooltip" class="tool-tip">
+                    
+                        <div>
+                            <span> Screen Size </span>
+            <span id="screenSize" style="color: white; font-size: 20px; font-style: normal; padding:5px; letter-spacing: 1px; "></span>
+        </div>
+        <div style="padding: 12px;">
+            <span> Name : </span>
+            <span> Windows </span>
+        </div>
+        <div style="padding: 13px; background-color: rgb(48, 47, 47);">
+            <span> Category : </span>
+            <span> Size</span>
+        </div>
+        </div>
+
+        </span>
+        <svg id="svg-screensize" viewBox="0 0 1000 550" style="top:10px">
                 <g id="XXL">
-                    <rect width="1000" height="550" style="fill: #fff0c7;" data-group="XXL"
+                    <rect id="svgRect1000" width="1000" height="550" style="fill: #fff0c7;" data-group="XXL"
                         data-popularity="pop-less-2" />
-                    <rect width="800" height="450" x="100" style="fill:#fce8b1;" data-group="XXL"
+                    <rect id="svgRect800" width="800" height="450" x="100" style="fill:#fce8b1;" data-group="XXL"
                         data-popularity="pop-more-5" />
-                    <rect width="720" height="440" x="140" style="fill:#fdd68e;" data-group="XXL"
+                    <rect id="svgRect720" width="720" height="440" x="140" style="fill:#fdd68e;" data-group="XXL"
                         data-popularity="pop-less-2" />
-                    <rect width="700" height="400" x="150" style="fill:#fdcc8d;" data-group="XXL"
+                    <rect id="svgRect700" width="700" height="400" x="150" style="fill:#fdcc8d;" data-group="XXL"
                         data-popularity="pop-2-5" />
-                   
+
                 </g>
                 <g id="XL">
-                        <rect width="680" height="390" x="160" style="fill:#fcd25f;" data-group="XL"
+                    <rect id="svgRect680" width="680" height="390" x="160" style="fill:#fcd25f;" data-group="XL"
                         data-popularity="pop-2-5" />
-                    <rect width="660" height="400" x="170" style="fill:#fab753;" data-popularity="pop-less-2"
+                    <rect id="svgRect660" width="660" height="400" x="170" style="fill:#fab753;" data-popularity="pop-less-2"
                         data-group="XL" />
-                    <rect width="640" height="350" x="180" style="fill:#f89b4f;" data-popularity="pop-more-5"
+                    <rect id="svgRect640" width="640" height="350" x="180" style="fill:#f89b4f;" data-popularity="pop-more-5"
                         data-group="XL" />
-                    <rect width="615" height="360" x="192.5" style="fill:#fa9542;" data-popularity="pop-less-2"
+                    <rect id="svgRect610" width="615" height="360" x="192.5" style="fill:#fa9542;" data-popularity="pop-less-2"
                         data-group="XL" />
-                    
+
                 </g>
                 <g id="L">
-                        <rect width="500" height="360" x="252.5" style="fill:#fc9c42;" data-popularity="pop-2-5"
+                    <rect id="svgRect500" width="500" height="360" x="252.5" style="fill:#fc9c42;" data-popularity="pop-2-5"
                         data-group="L" />
-                    <rect width="500" height="310" x="252.5" style="fill:#fc9139;" data-popularity="pop-less-2"
+                    <rect id="svgRect501" width="500" height="310" x="252.5" style="fill:#fc9139;" data-popularity="pop-less-2"
                         data-group="L" />
-                    <rect width="480" height="290" x="262.5" style="fill:#f7873d;" data-popularity="pop-more-5"
+                    <rect id="svgRect480" width="480" height="290" x="262.5" style="fill:#f7873d;" data-popularity="pop-more-5"
                         data-group="L" />
-                    <rect width="430" height="270" x="288.5" style="fill:#f59547;" data-popularity="pop-2-5"
+                    <rect id="svgRect430" width="430" height="270" x="288.5" style="fill:#f59547;" data-popularity="pop-2-5"
                         data-group="L" />
-                    
+
                 </g>
                 <g id="M">
-                        <rect width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;"
+                    <rect id="svgRect425" width="425" height="525" x="291" style="fill:#79d19b; opacity:0.3;"
                         data-popularity="pop-less-2" data-group="M" />
-                    <rect width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;"
+                    <rect id="svgRect435" width="435" height="490" x="286" style="fill:#41ce77; opacity:0.4;"
                         data-popularity="pop-less-2" data-group="M" />
-                    <rect width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;"
+                    <rect id="svgRect405" width="405" height="490" x="301" style="fill:#3dc772; opacity:0.3;"
                         data-popularity="pop-more-5" data-group="M" />
-                    <rect width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;" data-popularity="pop-2-5"
+                    <rect id="svgRect426" width="425" height="410" x="291" style="fill:#24c963; opacity:0.3;" data-popularity="pop-2-5"
                         data-group="M" />
-                    
+
                 </g>
                 <g id="S">
-                        <rect width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;"
+                    <rect id="svgRect360" width="360" height="410" x="323" style="fill:#39a0c9; opacity:0.2;"
                         data-popularity="pop-less-2" data-group="S" />
-                    <rect width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;"
+                    <rect id="svgRect361" width="360" height="370" x="323" style="fill:#39a0c9; opacity:0.3;"
                         data-popularity="pop-less-2" data-group="S" />
-                    <rect width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;"
+                    <rect id="svgRect320" width="320" height="370" x="344" style="fill:#39a0c9; opacity:0.4;"
                         data-popularity="pop-more-5" data-group="S" />
-                    <rect width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;"
+                    <rect id="svgRect280" width="280" height="320" x="363.5" style="fill:#3988c9; opacity:0.4;"
                         data-popularity="pop-2-5" data-group="S" />
-                    <rect width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;"
+                    <rect id="svgRect260" width="260" height="280" x="372.5" style="fill:#6439c9; opacity:0.1;"
                         data-popularity="pop-more-5" data-group="S" />
                 </g>
                 <g id="XS">
-                    <rect width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;"
+                    <rect id="svgRect220" width="220" height="250" x="392.5" style="fill:#a039c9; opacity:0.3;"
                         data-popularity="pop-less-2" data-group="XS" />
-                    <rect width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;"
+                    <rect id="svgRect230" width="230" height="230" x="387.5" style="fill:#a039c9; opacity:0.3;"
                         data-popularity="pop-more-5" data-group="XS" />
-                    <rect width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;" data-popularity="pop-2-5"
+                    <rect id="svgRect200" width="200" height="190" x="402" style="fill:#a039c9; opacity:0.5;" data-popularity="pop-2-5"
                         data-group="XS" />
-                    <rect width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;"
+                    <rect id="svgRect170" width="170" height="150" x="417" style="fill:#a039c9; opacity:0.7;"
                         data-popularity="pop-more-5" data-group="XS" />
-                    <rect width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;" data-popularity="pop-2-5"
+                    <rect id="svgRect140" width="140" height="110" x="432" style="fill:#a039c9; opacity:0.9;" data-popularity="pop-2-5"
                         data-group="XS" />
                 </g>
-               
+
             </svg>
+
         </div>
 
         <section id="footer-section">
@@ -428,7 +524,6 @@
             </footer>
         </section>
     </main>
-    <!-- Touch SSM -->
     <script>
         $(document).ready(function() {
             $("#touch-tip").hover(function() {
@@ -436,7 +531,6 @@
             })
         })
     </script>
-    <!-- Popularity -->
     <script>
         function popularity(pop) {
             allPopularity = document.querySelectorAll('[data-popularity]')
@@ -473,6 +567,7 @@
     <!-- Fullscreen -->
     <script>
         var x = document.getElementById('FS');
+
         function openfullscreen() {
             x.requestFullscreen();
         }
@@ -527,8 +622,136 @@
         document.getElementById('extra-small').addEventListener('click', function() {
             buttonControl('XS');
         });
+
+
         document.getElementById('reset-control').addEventListener('click', function() {
             buttonControl('button-all');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#svgRect1000").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect1000").width(), $("#svgRect1000").height());
+            });
+            $("#svgRect800").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect800").width(), $("#svgRect800").height());
+            });
+            $("#svgRect720").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect720").width(), $("#svgRect720").height());
+            });
+            $("#svgRect700").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect700").width(), $("#svgRect700").height());
+            });
+            $("#svgRect680").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect680").width(), $("#svgRect680").height());
+            });
+            $("#svgRect660").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect660").width(), $("#svgRect660").height());
+            });
+            $("#svgRect640").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect640").width(), $("#svgRect640").height());
+            });
+            $("#svgRect610").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect610").width(), $("#svgRect610").height());
+            });
+            $("#svgRect500").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect500").width(), $("#svgRect500").height());
+            });
+            $("#svgRect501").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect501").width(), $("#svgRect501").height());
+            });
+            $("#svgRect480").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect480").width(), $("#svgRect480").height());
+            });
+            $("#svgRect430").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect430").width(), $("#svgRect430").height());
+            });
+            $("#svgRect425").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect425").width(), $("#svgRect425").height());
+            });
+            $("#svgRect435").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect435").width(), $("#svgRect435").height());
+            });
+            $("#svgRect405").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect405").width(), $("#svgRect405").height());
+            });
+            $("#svgRect426").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect426").width(), $("#svgRect426").height());
+            });
+            $("#svgRect360").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect360").width(), $("#svgRect360").height());
+            });
+            $("#svgRect361").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect361").width(), $("#svgRect361").height());
+            });
+            $("#svgRect320").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect320").width(), $("#svgRect320").height());
+            });
+            $("#svgRect280").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect280").width(), $("#svgRect280").height());
+            });
+            $("#svgRect260").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect260").width(), $("#svgRect260").height());
+            });
+            $("#svgRect220").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect220").width(), $("#svgRect220").height());
+            });
+            $("#svgRect230").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect230").width(), $("#svgRect230").height());
+            });
+            $("#svgRect200").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect200").width(), $("#svgRect200").height());
+            });
+            $("#svgRect170").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect170").width(), $("#svgRect170").height());
+            });
+            $("#svgRect140").hover(function() {
+                $("#screenTooltip").show();
+                showWH($("#svgRect140").width(), $("#svgRect140").height());
+            });
+            $("body").hover(function() {
+                $("#screenTooltip").hide();
+            });
+
+            function showWH(w, h) {
+                $("#screenSize").text(" " + w + "x" + h + "dp");
+            }
+
+        });
+    </script>
+    <script>
+        var box = document.getElementById('screenTooltip');
+        box.addEventListener("mouseover", function() {
+            var e = window.event;
+            var x = e.clientX;
+            box.style.left = x + "px";
+            box.style.right = x + "px";
         });
     </script>
 </body>
