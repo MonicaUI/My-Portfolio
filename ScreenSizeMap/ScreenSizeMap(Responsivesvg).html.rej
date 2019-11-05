@@ -1,0 +1,18 @@
+diff a/ScreenSizeMap/ScreenSizeMap(Responsivesvg).html b/ScreenSizeMap/ScreenSizeMap(Responsivesvg).html	(rejected hunks)
+@@ -470,14 +470,15 @@
+             this.classList.add('active');
+         });
+     </script>
++    <!-- Fullscreen -->
+     <script>
+         var x = document.getElementById('FS');
+-
+         function openfullscreen() {
+             x.requestFullscreen();
+         }
+         document.getElementById('fullscreenOpen').addEventListener('click', openfullscreen);
+     </script>
++
+     <script>
+         function dropDown() {
+             document.getElementById('buttonDrop').classList.toggle("show");
