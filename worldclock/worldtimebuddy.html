@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> WorldTimeBuddy </title>
+    <style>
+        body {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: rgb(207, 204, 204);
+        }
+        
+        .wrapper {
+            padding: 6px;
+        }
+        
+        header a::before {
+            content: '|';
+            padding-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <section style="margin: 130px 0 40px 0;">
+        <header>
+            <div class="wrapper">
+                <i class="fa fa-caret-up"></i>
+                <i class="fa fa-caret-down"></i>
+                <input type="text" placeholder="+ Place or timezone">
+                <i class="fa fa-calendar"></i>
+                <span> | | | | | | | | </span>
+                <i class="fa fa-gear"> Settings </i>
+                <a href="#">Link to this view</a>
+            </div>
+
+        </header>
+        <main>
+            <div>
+
+                <div style="display: flex; padding : 13px 0; ">
+
+                    <div style="padding: 10px ; "><i class="fa fa-home"></i></div>
+                    <div>
+                        <div> <strong>Toronto </strong></div>
+                        <div style="font-size: 13px ;"> Canada , Ontario </div>
+                    </div>
+                    <div style="padding-left: 100px ; ">
+                        <div id="time"></div>
+                        <div id="date"></div>
+                    </div>
+                </div>
+
+                <div style="background-color: rgb(241, 237, 237) ; display: flex; padding : 13px 0;">
+                    <div style="padding: 10px ; "><i class="fa fa-home"></i></div>
+                    <div>
+                        <div> <strong>London </strong> </div>
+                        <div style="font-size: 13px ;"> United Kingdom , England </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+    </section>
+    <script>
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var ampm = h >= 12 ? 'p' : 'a';
+            h = h % 12;
+            h = h ? h : 12;
+            // add a zero in front of numbers<10
+            m = checkTime(m);
+            document.getElementById('time').innerHTML = h + ":" + m + "" + ampm;
+            t = setTimeout(function() {
+                startTime()
+            }, 500);
+        }
+        startTime();
+    </script>
+</body>
+
+</html>
