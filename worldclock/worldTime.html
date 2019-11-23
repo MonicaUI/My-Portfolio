@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> WorldTimeBuddy </title>
+    <style>
+        html {
+            background-color: rgb(245, 244, 244);
+        }
+        
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: rgb(236, 233, 233);
+        }
+        
+        .wrapper {
+            padding: 6px;
+        }
+        
+        header a::before {
+            content: '|';
+            padding-right: 5px;
+        }
+        
+        li {
+            line-height: 1;
+            font-size: 14px;
+            padding: 4px;
+            list-style: none;
+            display: block;
+            float: left;
+        }
+        
+        b {
+            font-size: 12px;
+            position: relative;
+            font-weight: normal;
+        }
+        
+        u {
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 10px;
+        }
+        
+        li span {
+            height: 20px;
+            width: 5px;
+        }
+        
+        #toDayLocal ul {
+            vertical-align: middle;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 7px;
+            height: 30px;
+            padding-inline-start: 0;
+            margin-block-start: 3px;
+        }
+        
+        #toDayForeign ul {
+            vertical-align: middle;
+            margin-left: 3px;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 7px;
+            height: 30px;
+            padding-inline-start: 0;
+            margin-block-start: 3px;
+        }
+        
+        .rect {
+            width: 540px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
+        
+        #control {
+            margin-top: 6px;
+            display: flex;
+            height: 40px;
+        }
+        
+        #local {
+            display: none;
+        }
+        
+        #foreign {
+            display: none;
+        }
+        
+        #toDay {
+            display: flex;
+        }
+        
+        #nextDay {
+            display: flex;
+            float: right;
+            overflow-y: hidden;
+        }
+        
+        #icon {
+            padding-left: 8px;
+            padding-top: 6px;
+            font-size: 22px;
+        }
+        
+        .band {
+            position: absolute;
+            min-height: 50px;
+            height: auto;
+            width: 22px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        
+        .tod_c {
+            background-color: #8FA8CF;
+            color: #FFF;
+        }
+        
+        .tod_n {
+            background-color: #95B3D7;
+            color: #EDFBFF;
+        }
+        
+        .tod_m {
+            background-color: #EDFBFF;
+            color: #8FA8CF;
+        }
+        
+        .tod_d {
+            background-color: #FFFFF3;
+            color: #8FA8CF;
+        }
+        
+        #l1 b {
+            font-size: 10px;
+        }
+        
+        #f24 b {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section style="margin: 130px 0 40px 0;">
+        <div style="border: 1px solid white; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);">
+            <header id="head">
+                <div class="wrapper">
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                    <input id="place" type="text" placeholder="+ Place or timezone" style="width: 140px;">
+                    <i class="fa fa-calendar" style="padding-left: 120px;"></i>
+                    <span id="before">
+                        <span id="beforeMonth"></span>
+                    <span id="beforeDate"></span>
+                    </span>
+                    <span id="current" style="border-bottom: 9px solid white; background-color: white ;">
+                        <span id="currentMonth"></span>
+                    <span id="currentDate"></span>
+                    </span>
+                    <span id="dateOne">
+                        <span id="dateOneMonth"></span>
+                    <span id="dateOneDate"></span>
+                    </span>
+                    <!-- <span id="dateTwo"> </span>
+                    <span id="dateThree"> </span> -->
+                    <i class="fa fa-gear"> Settings </i>
+                    <a href="#">Link to this view</a>
+                </div>
+
+            </header>
+            <main>
+
+                <div id="local" style="display: flex;  background-color: white; ">
+
+                    <div style="padding: 20px ;  "><i class="fa fa-home"></i></div>
+                    <div style="padding-top:10px;">
+                        <div> <strong>Toronto </strong></div>
+                        <div style="font-size: 13px ; color: gray;"> Canada , Ontario </div>
+                    </div>
+                    <div style="padding-left: 80px ; padding-right:20px; padding-top : 10px; ">
+                        <div id="time"></div>
+                        <div id="date" style="font-size: 13px ; color: gray;"></div>
+                    </div>
+                    <section>
+                        <div id="control">
+                            <!-- <div id="beforeDayLocal">
+
+                            </div>
+                            <div id="icon"><i class='fas fa-caret-right'></i> </div> -->
+                            <div id="toDayLocal">
+
+                                <!-- <div class="band"> </div> -->
+                            </div>
+                            <!-- <div id="icon"><i class='fas fa-caret-right'></i> </div>
+
+                            <div id="nextDayLocal"> -->
+
+                        </div>
+
+                    </section>
+                </div>
+                <div id="foreign" style="display: flex;  background-color: white; ">
+
+                    <div style="padding: 20px ;  "><i class="fa fa-home"></i></div>
+                    <div style="padding-top:10px;">
+                        <div> <strong>London </strong></div>
+                        <div style="font-size: 13px ; color: gray;"> UK , England </div>
+                    </div>
+                    <div style="padding-left: 96px ; padding-right:20px; padding-top : 10px; ">
+                        <div id="fTime"></div>
+                        <div id="fDate" style="font-size: 13px ; color: gray;"></div>
+                    </div>
+                    <section>
+                        <div id="control">
+                            <div id="toDayForeign">
+
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </main>
+            <script>
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0 " + i;
+                    }
+                    return i;
+                }
+
+                function localTime() {
+                    var today = new Date();
+                    var h = today.getHours();
+                    var m = today.getMinutes();
+                    var ampm = h >= 12 ? 'p' : 'a';
+                    var d = today.getDate();
+                    var d1 = (today.getDate() + 1);
+                    var mon = today.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var day = today.toLocaleString('en', {
+                        weekday: 'short'
+                    });
+                    h = h % 12;
+                    h = h ? h : 12;
+                    m = checkTime(m);
+                    document.getElementById('time').innerHTML = h + " : " + m + " " + ampm;
+                    document.getElementById('date').innerHTML = day + " , " + mon + " " + d;
+                    //document.getElementById('dayOne').innerHTML = mon + " <br> " + d;
+                    //document.getElementById('dayTwo').innerHTML = mon + " <br> " + d1;
+                }
+                localTime();
+            </script>
+            <script>
+                function foreignTime() {
+                    var today = new Date();
+                    var UH = today.getUTCHours();
+                    var UM = today.getUTCMinutes();
+                    var ampm = UH >= 12 ? 'p' : 'a';
+                    var d = today.getUTCDate();
+                    var mon = today.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var day = today.toLocaleString('en', {
+                        weekday: 'short'
+                    });
+                    UH = UH % 12;
+                    UH = UH ? UH : 12;
+                    // add a zero in front of numbers<10
+                    UM = checkTime(UM);
+                    document.getElementById('fTime').innerHTML = UH + " : " + UM + " " + ampm;
+                    t = setTimeout(function() {
+                        foreignTime()
+                    }, 500);
+                    document.getElementById('fDate').innerHTML = day + " , " + mon + " " + d;
+                    // document.getElementById('monthF').innerHTML = mon + " <br> " + d;
+                }
+                foreignTime();
+            </script>
+            <script>
+                function hourLineTodayLocal() {
+                    var h = new Date();
+                    var mon = h.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var d = h.getDate();
+                    var gethour = h.getHours();
+                    tempHourArr = [];
+                    x = [];
+                    hourOption = 24;
+
+                    var textLocal, x;
+                    for (i = 0; i < hourOption; i++) {
+                        var hour = h.setHours(i),
+                            minutes = h.setMinutes(0),
+                            stringHour = h.getHours();
+                        tempHourArr.push(stringHour);
+
+                    }
+
+                    console.log(tempHourArr);
+                    hourLength = tempHourArr.length;
+                    textLocal = "<ul>";
+
+                    for (x = 0; x < hourLength; x++) {
+                        // tempHourArr.forEach((item, i) => {
+                        //     item.id = i + 10;
+                        // });
+                        tempHourArr[0] = mon;
+                        if (tempHourArr[x] == mon) {
+                            ampm = d;
+                        } else if (tempHourArr[x] < 12) {
+                            ampm = "am";
+                        } else {
+                            ampm = "pm";
+                        }
+
+                        t = "<b>" + tempHourArr[x] + "</b>";
+                        ampm = "<u>" + ampm + "</u>";
+
+
+                        if (tempHourArr[x] == gethour) {
+                            textLocal += "<li style = 'border:1px solid black'>" + t + ampm + "</li>";
+                        } else {
+                            textLocal += "<li>" + t + ampm + "</li>";
+                        }
+                    }
+                    textLocal += "</ul>";
+
+                    document.getElementById('toDayLocal').innerHTML = textLocal;
+                    //tempHourArr[i].style.border = '1px solid red';
+                }
+                hourLineTodayLocal();
+                var element = document.querySelectorAll('#toDayLocal li');
+                // convert NodeList into an array
+                // for older browser use [].slice.call(element)
+                Array.from(element)
+                    // iterate over the element
+                    .forEach(function(ele, i) {
+                        // generate and set id
+                        ele.setAttribute("id", 'l' + (i + 1));
+                    })
+            </script>
+            <script>
+                function hourLineTodayForeign() {
+                    var h = new Date();
+                    var mon = h.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var d = h.getUTCDate();
+                    tempHourArr = [];
+                    x = [];
+                    hourOption = 24;
+
+                    var textLocal, x;
+                    for (i = 0; i < 5 + hourOption; i++) {
+                        var hour = h.setUTCHours(i),
+                            minutes = h.setUTCMinutes(0),
+                            stringHour = h.getUTCHours();
+                        tempHourArr.push(stringHour);
+
+                    }
+
+                    console.log(tempHourArr);
+                    hourLength = tempHourArr.length;
+                    textLocal = "<ul>";
+                    for (x = 5; x < hourLength; x++) {
+                        // tempHourArr.forEach((item, i) => {
+                        //     item.id = i + 10;
+                        // });
+                        tempHourArr[24] = mon;
+
+                        if (tempHourArr[x] == mon) {
+                            ampm = d;
+
+                        } else if (tempHourArr[x] < 12) {
+                            ampm = "am";
+                        } else {
+                            ampm = "pm";
+                        }
+
+                        t = "<b>" + tempHourArr[x] + "</b>";
+                        ampm = "<u>" + ampm + "</u>";
+                        textLocal += "<li>" + t + ampm + "</li>";
+                    }
+                    textLocal += "</ul>";
+
+                    document.getElementById('toDayForeign').innerHTML = textLocal;
+                    //tempHourArr[i].style.border = '1px solid red';
+                }
+                hourLineTodayForeign();
+                var element = document.querySelectorAll('#toDayForeign li');
+                // convert NodeList into an array
+                // for older browser use [].slice.call(element)
+                Array.from(element)
+                    // iterate over the element
+                    .forEach(function(ele, i) {
+                        // generate and set id
+                        ele.setAttribute("id", 'f' + (i + 5));
+                    })
+            </script>
+            <script>
+                function changeDate() {
+                    var date = new Date();
+                    var ad = (date.getDate() - 1);
+                    var d = date.getDate();
+                    var cd = (date.getDate() + 1);
+                    var mon = date.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    document.getElementById('beforeDate').innerHTML = ad;
+                    document.getElementById('currentMonth').innerHTML = mon;
+                    document.getElementById('currentDate').innerHTML = d;
+                    document.getElementById('dateOneDate').innerHTML = cd;
+                    // document.getElementById('dateTwo').innerHTML = dd;
+                    // document.getElementById('dateThree').innerHTML = ed;
+                }
+                changeDate();
+            </script>
+
+            <script>
+                function border() {
+                    var h = new Date();
+                    var mon = h.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var d = h.getDate();
+                    var utcd = h.getUTCDate();
+                    document.getElementById("beforeMonth").innerHTML = "";
+                    document.getElementById("currentMonth").innerHTML = mon;
+                    document.getElementById("dateOneMonth").innerHTML = "";
+                    document.getElementById("current").style.borderBottom = "9px solid white";
+                    document.getElementById("current").style.backgroundColor = "white";
+                    document.getElementById('before').style.border = '0';
+                    document.getElementById("before").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById("dateOne").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById("dateOne").style.border = "0";
+                    document.getElementById("l1").getElementsByTagName("U")[0].innerHTML = d;
+                    document.getElementById("f24").getElementsByTagName("U")[0].innerHTML = utcd;
+
+                }
+                document.getElementById('current').addEventListener('click', border);;
+
+                function beforeDayBorder() {
+                    var h = new Date();
+                    var mon = h.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var d = h.getDate() - 1;
+                    var utcd = h.getUTCDate() - 1;
+                    document.getElementById("beforeMonth").innerHTML = mon;
+                    document.getElementById("currentMonth").innerHTML = "";
+                    document.getElementById("dateOneMonth").innerHTML = "";
+                    document.getElementById("before").style.borderBottom = "9px solid white";
+                    document.getElementById("before").style.backgroundColor = "white";
+                    document.getElementById("current").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById('current').style.border = '0';
+                    document.getElementById("dateOne").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById("dateOne").style.border = "0";
+                    document.getElementById("l1").getElementsByTagName("U")[0].innerHTML = d;
+                    document.getElementById("f24").getElementsByTagName("U")[0].innerHTML = utcd;
+                }
+                document.getElementById('before').addEventListener('click', beforeDayBorder);
+
+                function dateOneBorder() {
+                    var h = new Date();
+                    var mon = h.toLocaleString('en', {
+                        month: 'short'
+                    });
+                    var d = h.getDate() + 1;
+                    var utcd = h.getUTCDate() + 1;
+                    document.getElementById("beforeMonth").innerHTML = "";
+                    document.getElementById("currentMonth").innerHTML = "";
+                    document.getElementById("dateOneMonth").innerHTML = mon;
+                    document.getElementById("dateOne").style.borderBottom = "9px solid white";
+                    document.getElementById("dateOne").style.backgroundColor = "white";
+                    document.getElementById("current").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById('current').style.border = '0';
+                    document.getElementById("before").style.backgroundColor = "rgb(236, 233, 233)";
+                    document.getElementById("before").style.border = "0";
+                    document.getElementById("l1").getElementsByTagName("U")[0].innerHTML = d;
+                    document.getElementById("f24").getElementsByTagName("U")[0].innerHTML = utcd;
+                }
+                document.getElementById('dateOne').addEventListener('click', dateOneBorder);
+            </script>
+</body>
+
+</htmlx
