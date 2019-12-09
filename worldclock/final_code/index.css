@@ -1,0 +1,325 @@
+    html {
+        background-color: rgb(245, 244, 244);
+        height: 100%;
+    }
+    
+    body {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    header {
+        background-color: rgb(236, 233, 233);
+    }
+    
+    .wrapper {
+        width: 950px;
+        margin: 0 auto;
+        z-index: 100;
+        position: relative;
+    }
+    
+    header .wrapper {
+        padding: 6px;
+    }
+    
+    header a::before {
+        content: '|';
+        padding-right: 5px;
+    }
+    
+    #local #control li {
+        line-height: 1;
+        font-size: 14px;
+        padding: 4px;
+        list-style: none;
+        display: block;
+        float: left;
+        width: 16px;
+    }
+    
+    #foreign #control li {
+        line-height: 1;
+        font-size: 14px;
+        padding: 4px;
+        list-style: none;
+        display: block;
+        float: left;
+        width: 16px;
+    }
+    
+    b {
+        font-size: 12px;
+        position: relative;
+        font-weight: normal;
+    }
+    
+    u {
+        text-decoration: none;
+        display: block;
+        font-size: 10px;
+    }
+    
+    li span {
+        height: 20px;
+        width: 5px;
+    }
+    
+    #toDayLocal ul {
+        vertical-align: middle;
+        display: inline-block;
+        border-radius: 7px;
+        height: 30px;
+        padding-inline-start: 0;
+        margin-block-start: 3px;
+    }
+    
+    #toDayForeign ul:nth-child(1) {
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: 1px;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        height: 30px;
+        padding-inline-start: 0;
+        margin-block-start: 3px;
+    }
+    
+    #toDayForeign ul:nth-child(2) {
+        vertical-align: middle;
+        margin-left: 1.5px;
+        display: inline-block;
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+        height: 30px;
+        padding-inline-start: 0;
+        margin-block-start: 3px;
+    }
+    
+    .border-bond-left {
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        border-right: 1px solid black;
+    }
+    
+    .border-bond-right {
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+        border-left: 1px solid black;
+    }
+    
+    .rect {
+        width: 540px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    
+    #glass {
+        position: absolute;
+        opacity: 0.7;
+    }
+    
+    .glass {
+        opacity: 0.5;
+    }
+    
+    .bandNoBlur {
+        background-color: green;
+    }
+    
+    .cband {
+        z-index: 1000;
+        display: none;
+        background-color: rgb(161, 203, 250);
+    }
+    
+    #local {
+        display: none;
+    }
+    
+    #foreign {
+        display: none;
+    }
+    
+    #toDay {
+        display: flex;
+    }
+    
+    #nextDay {
+        display: flex;
+        float: right;
+        overflow-y: hidden;
+    }
+    
+    #icon {
+        padding-left: 8px;
+        padding-top: 6px;
+        font-size: 22px;
+    }
+    
+    .bandLocal {
+        border: 2px solid #292929;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        z-index: 1000;
+        display: none;
+        height: 80px;
+    }
+    
+    .bandFor {
+        border-left: 2px solid #292929;
+        border-right: 2px solid #292929;
+        border-bottom: 2px solid #292929;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        z-index: 1000;
+        display: none;
+    }
+    /* .cband {
+    z-index: 1000;
+    display: none;
+    height: 80px;
+    resize: horizontal;
+    overflow: auto;
+} */
+    
+    .pan {
+        width: 96px;
+        padding-left: 4px;
+        height: 100%;
+        right: 0;
+        background-color: #f0f0ff;
+    }
+    
+    .band-handle {
+        position: absolute;
+        z-index: 20000;
+        width: 5px;
+        margin-top: 2px;
+        display: none;
+        cursor: w-resize;
+        background: transparent;
+        position: absolute;
+        z-index: 20000;
+        width: 5px;
+        margin-top: 2px;
+        /* display:none; */
+        cursor: w-resize;
+        background: transparent;
+    }
+    
+    .tod_c {
+        background-color: rgb(108, 144, 200);
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+        color: #FFF;
+    }
+    
+    .tod_n {
+        background-color: rgb(123, 165, 218);
+        color: #EDFBFF;
+    }
+    
+    #f23 {
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        background-color: rgb(123, 165, 218);
+        color: #EDFBFF;
+    }
+    
+    .tod_m {
+        background-color: rgb(175, 230, 245);
+        color: #8FA8CF;
+    }
+    
+    .tod_d {
+        border-bottom: 1px solid rgb(171, 242, 248);
+        border-top: 1px solid rgb(171, 242, 248);
+        background-color: #FFFFF3;
+        color: #8FA8CF;
+    }
+    
+    #l1 b {
+        font-size: 10px;
+    }
+    
+    #f24 b {
+        font-size: 10px;
+    }
+    
+    #calender {
+        display: none;
+        position: absolute;
+        margin-left: -80px;
+        margin-top: 10px;
+    }
+    
+    .calender {
+        list-style-type: none;
+        background: #1abc9c;
+        text-align: center;
+    }
+    
+    .calender ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    .calender ul li {
+        color: white;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    
+    .calender .prev {
+        float: left;
+        padding-top: 10px;
+    }
+    
+    .calender .next {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .weekdays {
+        width: 170px;
+        margin: 0;
+        padding: 5px 0;
+        background-color: #ddd;
+    }
+    
+    .weekdays li {
+        padding-right: 3px;
+        padding-left: 5px;
+        font-size: 10px;
+        display: inline-block;
+        color: #666;
+        text-align: center;
+    }
+    
+    .days {
+        width: 170px;
+        padding: 10px 0;
+        background: #eee;
+        margin: 0;
+    }
+    
+    .days li {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 10px;
+        display: inline-block;
+        text-align: center;
+        list-style-type: none;
+        margin-bottom: 5px;
+        color: #777;
+    }
+    
+    .days li .active {
+        padding: 2px;
+        background: #1abc9c;
+        color: white !important ?
+    }
