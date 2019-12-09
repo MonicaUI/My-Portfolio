@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <title> Basic Tools </title>
+    <style>
+        html {
+            font-size: 18px;
+        }
+        
+        header {
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding-bottom: 50px;
+        }
+        
+        textarea {
+            width: 900px;
+            height: 100px;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+        
+        button {
+            margin: 5px;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Add/Remove Line Breaks</header>
+    <div>
+        <textarea id="psText">Input Box 
+Enter your input text here and click a text formatting function button below.
+CS = "Case Sensitive"
+RELB = "Remove Existing Line Breaks"</textarea>
+    </div>
+    <div>
+        <button type="button" id="rmLineBreak"> REMOVE ALL LINE BREAKS </button>
+        <span>and replace the line break with this text:</span>
+        <input type="text" id="strLineBreak" value="" style="width:300px; font-size : 16px; height : 40px; margin:4px;">
+        <span>Blank for nothing.</span>
+    </div>
+    <div>
+        <button type="button" id="addLineBreak"> MAKE NEW LINE BREAKS </button>
+        <input type="radio" name="option" id="before" checked>before
+        <input type="radio" name="option" id="after">after each occurance of texts
+        <input type="text" id="lineBreak" value="" style="width:300px; font-size : 16px; height : 40px; margin:4px;">
+        <input type="checkbox" name="option" id="CS">CS
+        <input type="checkbox" name="option" id="RELB">RELB
+    </div>
+    <div>
+        <button type="button" id="button"> MAKE NEW LINE BREAKS </button>
+        <span>every</span>
+        <input type="text" id="prefix" value="" style="width:100px; font-size : 16px; height : 40px; margin:4px;">
+        <span>characters.</span>
+        <input type="checkbox" name="option" value="Word Wrap">Word Wrap
+        <input type="checkbox" name="option" value="Escape">Escape existing line breaks.
+        <button id='select' type="button"> S </button>
+        <button id='clear' type="button"> C </button>
+        <button id='load' type="button"> ▲ </button>
+    </div>
+
+    <textarea id="textPS" style="width:100%" row="4" wrap="off">Output Box
+Modified text will display here.
+Click ▲ button to load output into input.
+Check "Word wrap" to break line between full words only.
+Privacy of Data: This tool is built-with and functions-in Client Side JavaScripting, so only your computer will see or process your data input/output.</textarea>
+    <button type="button"> LOAD FILE </button>
+    <input type="file" id="myFile" style="margin-right: 100px;">
+    <a download="Output.txt" id="downloadlink"><button type="button" id="saveAs"> SAVE US </button></a>
+    <input type="text" value="output.txt">
+</body>
+<script>
+    function insertStr() {
+        var str = document.getElementById('strLineBreak').value;
+        //var suffix = document.getElementById('suffix').value;
+        var psText = document.getElementById('psText').value.split("\n");
+        var ptext = str + psText.join(str);
+        document.getElementById('textPS').innerHTML = ptext;
+    }
+    document.getElementById('rmLineBreak').addEventListener('click', insertStr);
+</script>
+
+<script>
+    function insertLineBk() {
+        var str = document.getElementById('psText').value;
+        var replace = document.getElementById('lineBreak').value;
+        var option = document.getElementsByName('option');
+
+        if (option[0].checked) {
+            var res = str.replace(replace, "\n" + replace);
+        } else {
+            var res = str.replace(replace, replace + "\n");
+        }
+
+        document.getElementById('textPS').innerHTML = res;
+    }
+    document.getElementById('addLineBreak').addEventListener('click', insertLineBk);
+
+    function compareStrings(string1, string2, ignoreCase, useLocale) {
+        if (ignoreCase) {
+            if (useLocale) {
+                string1 = string1.toLocaleLowerCase();
+                string2 = string2.toLocaleLowerCase();
+            } else {
+                string1 = string1.toLowerCase();
+                string2 = string2.toLowerCase();
+            }
+        }
+
+        return string1 === string2;
+    }
+</script>
+<script>
+    function select() {
+        document.getElementById("textPS").select();
+    }
+    document.getElementById("select").addEventListener('click', select);
+</script>
+<script>
+    function clearContent() {
+        document.getElementById('textPS').value = ''
+    }
+
+    document.getElementById("clear").addEventListener('click', clearContent);
+</script>
+<script>
+    function load() {
+        var input = document.getElementById('psText').value;
+        var output = document.getElementById('textPS').value;
+        document.getElementById('psText').innerHTML = output;
+        document.getElementById('textPS').innerHTML = "";
+        document.getElementById('clear').addEventListener('click', function() {
+            document.getElementById('psText').innerHTML = "";
+        });
+    }
+    document.getElementById("load").addEventListener('click', load);
+</script>
+<script>
+    function loadFile(event) {
+        const input = event.target
+        if ('files' in input && input.files.length > 0) {
+            placeFileContent(
+                document.getElementById('psText'),
+                input.files[0])
+        }
+    }
+
+    function placeFileContent(target, file) {
+        readFileContent(file).then(content => {
+            target.value = content
+        }).catch(error => console.log(error))
+    }
+
+    function readFileContent(file) {
+        const reader = new FileReader()
+        return new Promise((resolve, reject) => {
+            reader.onload = event => resolve(event.target.result)
+            reader.onerror = error => reject(error)
+            reader.readAsText(file)
+        })
+    }
+    document.getElementById('myFile').addEventListener('change', loadFile);
+
+    (function() {
+        var textFile = null,
+            makeTextFile = function(text) {
+                var data = new Blob([text], {
+                    type: 'text/plain'
+                });
+
+                // If we are replacing a previously generated file we need to
+                // manually revoke the object URL to avoid memory leaks.
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
+
+                textFile = window.URL.createObjectURL(data);
+
+                return textFile;
+            };
+
+
+        var create = document.getElementById('saveAs'),
+            textbox = document.getElementById('psText');
+
+        create.addEventListener('click', function() {
+            var link = document.getElementById('downloadlink');
+            link.href = makeTextFile(textbox.value);
+        }, false);
+    })();
+</script>
+
+</html>
