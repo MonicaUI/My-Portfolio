@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title> TODO </title>
+    <link rel="stylesheet" type="text/css" href="todo.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <header id="todo-list">
+            <h1> todos </h1>
+            <input type="text" id="task" class="new-todo" placeholder="What needs to be done ?">
+        </header>
+        <section id="main" style="display: none;">
+            <label id="toggleAll" for="toggle-all" style="display: none;"></label>
+            <ul id="lists" class="todo-list"></ul>
+        </section>
+        <footer id="foot" style="display: none;">
+            <span class="list-count"><strong id="counts"> </strong> items left</span>
+            <ul class="filter">
+                <li>
+                    <a id="all" href="#all" class="selected"> All </a>
+                </li>
+                <li>
+                    <a id="active" href="#active" class="selected"> Active </a>
+                </li>
+                <li>
+                    <a id="completed" href="#complted" class="selected"> Completed </a>
+                </li>
+
+                <button id="clearCompleted"> Clear completed </button>
+            </ul>
+        </footer>
+    </section>
+    <footer></footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
