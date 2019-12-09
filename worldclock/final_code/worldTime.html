@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> WorldTimeBuddy </title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <section style="margin: 130px 0 40px 0;">
+        <div id="wrap" class="wrapper" style="border: 1px solid white; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);">
+
+            <header id="head">
+                <div class="wrapper">
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                    <input id="place" type="text" placeholder="+ Place or timezone" style="width: 140px;">
+                    <i id="cal" class="fa fa-calendar" style="cursor:pointer;padding-left: 120px;">
+                        <div id="calender">
+                            <div class="calender" >      
+                                    <ul>
+                                      <li class="prev">&#10094;</li>
+                                      <li class="next">&#10095;</li>
+                                      <li  style="padding:3px 0;">
+                                        <span id="month"></span>
+                                        <br>
+                                        <span id="year" style="font-size:10px; letter-spacing: 1px;"></span>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  
+                                  <ul class="weekdays">
+                                    <li>Mo</li>
+                                    <li>Tu</li>
+                                    <li>We</li>
+                                    <li>Th</li>
+                                    <li>Fr</li>
+                                    <li>Sa</li>
+                                    <li>Su</li>
+                                  </ul>
+                                  
+                                  <ul id = "days" class="days">  
+                                    <li>01</li>
+                                    <li>02</li>
+                                    <li>03</li>
+                                    <li>04</li>
+                                    <li>05</li>
+                                    <li>06</li>
+                                    <li>07</li>
+                                    <li>08</li>
+                                    <li>09</li>
+                                    <li>10</li>
+                                    <li>11</li>
+                                    <li>12</li>
+                                    <li>13</li>
+                                    <li>14</li>
+                                    <li>15</li>
+                                    <li>16</li>
+                                    <li>17</li>
+                                    <li>18</li>
+                                    <li>19</li>
+                                    <li>20</li>
+                                    <li>21</li>
+                                    <li>22</li>
+                                    <li>23</li>
+                                    <li>24</li>
+                                    <li>25</li>
+                                    <li>26</li>
+                                    <li>27</li>
+                                    <li>28</li>
+                                    <li>29</li>
+                                    <li>30</li>
+                                    <li>31</li>
+                                  </ul>
+                                </div>
+                                  </i>
+                    <span id="before" style="padding: 3px 8px 8px; cursor:pointer;">
+                        <span id="beforeMonth"></span>
+                    <span id="beforeDate"></span>
+                    </span>
+                    <span id="current" style="border-bottom: 4px solid white;cursor:pointer; background-color: white ;padding: 3px 8px 8px;">
+                        <span id="currentMonth"></span>
+                    <span id="currentDate"></span>
+                    </span>
+                    <span id="dateOne" style="padding: 3px 8px 8px;cursor:pointer;">
+                        <span id="dateOneMonth"></span>
+                    <span id="dateOneDate"></span>
+                    </span>
+                    <i class="fa fa-gear" style="margin-left:200px"> Settings </i>
+                    <a id="link" href="#">Link to this view</a>
+                </div>
+
+            </header>
+            <main>
+                <div class="clientarea">
+                    <div id="controls">
+                        <!-- <div id="glass" style="z-index: 10000; border:1px solid black; left:250px; height:100px; width:600px"></div> -->
+                        <div id="band-whiteout-left"></div>
+                        <div id="band-whiteout-right"></div>
+                        <!-- <div class="cband" style="top: 14px; left: 961px; right: 23px; bottom: 14px; opacity: 0.1;"></div>
+                        <div class="band">
+                            <div></div>
+                            <span class="homeHour"></span>
+                        </div>
+                        <div id="band-handle-left" class="band-handle"></div>
+                        <div id="band-handle-right" class="band-handle"></div> -->
+
+                        <div id="local" style="display: flex;  background-color: white; ">
+
+                            <div style="padding: 20px ;  "><i class="fa fa-home"></i></div>
+                            <div style="padding-top:10px;">
+                                <div> <strong>Toronto </strong></div>
+                                <div style="font-size: 13px ; color: gray;"> Canada , Ontario </div>
+                            </div>
+                            <div style="padding-left: 30px ; padding-right:20px; padding-top : 10px; ">
+                                <div id="time"></div>
+                                <div id="date" style="font-size: 13px ; color: gray;"></div>
+                            </div>
+
+                            <section>
+                                <div id="control">
+                                    <div id="toDayLocal"></div>
+                                </div>
+                            </section>
+                        </div>
+                        <div id="foreign" style="display: flex;  background-color: white; ">
+
+                            <div style="padding: 20px ;  "><i class="fa fa-home"></i></div>
+                            <div style="padding-top:10px;">
+                                <div> <strong>London </strong></div>
+                                <div style="font-size: 13px ; color: gray;"> UK , England </div>
+                            </div>
+                            <div style="padding-left: 46px ; padding-right:19px; padding-top : 10px; ">
+                                <div id="fTime"></div>
+                                <div id="fDate" style="font-size: 13px ; color: gray;"></div>
+                            </div>
+                            <section>
+                                <div id="control">
+                                    <div id="toDayForeign">
+
+                                    </div>
+                                </div>
+
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="index.js"></script>
+</body>
+
+</html>
