@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport=" content="width=device-width, initial-scale=1.0">
+    <title> Basic Tools </title>
+    <style>
+        html {
+            font-size: 20px;
+        }
+        
+        header {
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding-bottom: 50px;
+        }
+        
+        textarea {
+            width: 900px;
+            height: 150px;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+        
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Add Prefix/Suffix into Line</header>
+    <div>
+        <textarea id="psText">Input Box 
+Enter text for prefix and/or suffix insertion here</textarea>
+    </div>
+    <div>
+        <span>Add this <strong>prefix</strong> into the beginning of each line: </span> <br>
+        <input type="text" id="prefix" value placeholder="Enter prefix here" style="width:900px; font-size : 16px; height : 50px;">
+    </div>
+    <div>
+        <span>Add this <strong>suffix</strong> into the beginning of each line: </span> <br>
+        <input type="text" id="suffix" value placeholder="Enter suffix here" style="width:900px; font-size : 16px; height : 50px;">
+    </div>
+    <div>
+        <button type="button" id="button"> ADD PREFIX AND/OR SUFFIX </button>
+        <button id='select' type="button"> S </button>
+        <button id='clear' type="button"> C </button>
+    </div>
+
+    <textarea id="textPS" style="width:100%" row="4" wrap="off">
+Output Box
+Modified text will display here after entering the prefix and/or suffix into their appropriate field and clicking the "Add Prefix and/or Suffix" button above.
+Privacy of Data: This tool is built-with and functions-in Client Side JavaScripting, so only your computer will see or process your data input/output.</textarea>
+    <button type="button"> LOAD FILE </button>
+    <input type="file" id="myFile" style="margin-right: 100px;">
+    <a download="Output.txt" id="downloadlink"><button type="button" id="saveAs"> SAVE US </button></a>
+    <input type="text" value="output.txt">
+</body>
+<script>
+    function ps_Text() {
+        var prefix = document.getElementById('prefix').value;
+        var suffix = document.getElementById('suffix').value;
+        var psText = document.getElementById('psText').value.split("\n");
+        var ptext = prefix + psText.join(suffix + "\n" + prefix) + suffix;
+        document.getElementById('textPS').innerHTML = ptext;
+    }
+    document.getElementById('button').addEventListener('click', ps_Text);
+</script>
+<script>
+    function loadFile(event) {
+        const input = event.target
+        if ('files' in input && input.files.length > 0) {
+            placeFileContent(
+                document.getElementById('psText'),
+                input.files[0])
+        }
+    }
+
+    function placeFileContent(target, file) {
+        readFileContent(file).then(content => {
+            target.value = content
+        }).catch(error => console.log(error))
+    }
+
+    function readFileContent(file) {
+        const reader = new FileReader()
+        return new Promise((resolve, reject) => {
+            reader.onload = event => resolve(event.target.result)
+            reader.onerror = error => reject(error)
+            reader.readAsText(file)
+        })
+    }
+    document.getElementById('myFile').addEventListener('change', loadFile);
+
+    (function() {
+        var textFile = null,
+            makeTextFile = function(text) {
+                var data = new Blob([text], {
+                    type: 'text/plain'
+                });
+
+                // If we are replacing a previously generated file we need to
+                // manually revoke the object URL to avoid memory leaks.
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
+
+                textFile = window.URL.createObjectURL(data);
+
+                return textFile;
+            };
+
+
+        var create = document.getElementById('saveAs'),
+            textbox = document.getElementById('psText');
+
+        create.addEventListener('click', function() {
+            var link = document.getElementById('downloadlink');
+            link.href = makeTextFile(textbox.value);
+        }, false);
+    })();
+</script>
+
+<script>
+    function select() {
+        document.getElementById("textPS").select();
+    }
+    document.getElementById("select").addEventListener('click', select);
+</script>
+<script>
+    function clearContent() {
+        document.getElementById('textPS').value = '';
+    }
+    document.getElementById("clear").addEventListener('click', clearContent);
+</script>
+
+</html>
